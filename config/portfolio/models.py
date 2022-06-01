@@ -43,3 +43,14 @@ class Projects(models.Model):
     class Meta:
         verbose_name = 'Project'
         verbose_name_plural = 'Projects'
+
+
+
+class Resume(models.Model):
+    aboutme_information = models.TextField(blank=True, null=True)
+    work_title = models.CharField(max_length=111, blank=True, null=True)
+    work_information = models.TextField(blank=True, null=True)
+    date_work = models.DateField(blank=True, null=True)
+    education_title = models.CharField(max_length=111, blank=True, null=True)
+    education_information = models.TextField(blank=True, null=True)
+    date_education = models.DateField(blank=True, null=True)
