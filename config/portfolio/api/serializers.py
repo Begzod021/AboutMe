@@ -27,3 +27,9 @@ class AboutMeSerializers(serializers.ModelSerializer):
         serializer_skill = SkillSerializers(skill, many=True)
 
         return serializer_skill.data
+
+
+class ResumeSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = Resume
+        fields = '__all__'

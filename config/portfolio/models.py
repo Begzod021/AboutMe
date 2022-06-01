@@ -54,3 +54,11 @@ class Resume(models.Model):
     education_title = models.CharField(max_length=111, blank=True, null=True)
     education_information = models.TextField(blank=True, null=True)
     date_education = models.DateField(blank=True, null=True)
+
+
+    def __str__(self) -> str:
+        return self.aboutme_information
+    
+    class Meta:
+        verbose_name = 'Resume'
+        verbose_name_plural = 'Resume'

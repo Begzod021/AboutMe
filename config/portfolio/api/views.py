@@ -1,4 +1,4 @@
-from portfolio.api.serializers import AboutMeSerializers, ProjectSerializers
+from portfolio.api.serializers import AboutMeSerializers, ProjectSerializers, ResumeSerializers
 from rest_framework.views import APIView
 from portfolio.models import *
 from rest_framework import status
@@ -22,4 +22,12 @@ class Project(APIView):
         serializer = ProjectSerializers(projects, many=True)
 
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+@api_view(['GET'])
+def resume(request):
+    resum = Resume.objects.all()
+    serializers = ResumeSerializers(resum, many=True)
+
+    return Response(serializers.data, status=status.HTTP_200_OK)
         

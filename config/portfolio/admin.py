@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import AboutMe, Projects, Skill
+from .models import AboutMe, Projects, Skill, Resume
 # Register your models here.
 @admin.register(AboutMe)
 class CommentAdmin(admin.ModelAdmin):
@@ -14,3 +14,9 @@ class CommentAdmin(admin.ModelAdmin):
 @admin.register(Skill)
 class CommentAdmin(admin.ModelAdmin):
     list_display = ['id', 'skills']
+
+
+
+@admin.register(Resume)
+class ResumeAdmin(admin.ModelAdmin):
+    list_display = ['id', 'aboutme_information']
