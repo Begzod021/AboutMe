@@ -1,3 +1,4 @@
+from tokenize import Triple
 from portfolio.models import *
 from rest_framework import serializers
 
@@ -23,6 +24,6 @@ class AboutMeSerializers(serializers.ModelSerializer):
     def get_skill(self, obj):
         skill = obj.skill
 
-        serializer_skill = SkillSerializers(skill, many=False)
+        serializer_skill = SkillSerializers(skill, many=True)
 
         return serializer_skill.data

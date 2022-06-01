@@ -20,7 +20,7 @@ class AboutMe(models.Model):
     email = models.EmailField(max_length=111, blank=True, null=True)
     instagram = models.URLField(blank=True, null=True)
     facebook = models.URLField(blank=True, null=True)
-    skill = models.ForeignKey(Skill, on_delete=models.CASCADE, blank=True, null=True)
+    skill = models.ManyToManyField(Skill, blank=True)
 
     def __str__(self) -> str:
         return self.fullname
