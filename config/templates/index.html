@@ -24,7 +24,7 @@
    ================================================== -->   
 	<script src="{% static 'js/modernizr.js' %}"></script>
 	<script src="{% static 'js/pace.min.js' %}"></script>
-
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js"></script>
    <!-- favicons
 	================================================== -->
 	<link rel="icon" type="image/png" href="favicon.png">
@@ -126,25 +126,25 @@
    			<p>Lorem ipsum Qui veniam ut consequat ex ullamco nulla in non ut esse in magna sint minim officia consectetur nisi commodo ea magna pariatur nisi cillum.</p>
 
    			<ul class="info-list">
-   				<li>
-   					<strong>Fullname:</strong>
-   					<span>Juan Dela Cruz</span>
+   				<li id="fullname">
+   					<strong></strong>
+   					<span></span>
    				</li>
-   				<li>
-   					<strong>Birth Date:</strong>
-   					<span>September 28, 1987</span>
+   				<li id="birthday">
+   					<strong></strong>
+   					<span></span>
    				</li>
-   				<li>
-   					<strong>Job:</strong>
-   					<span>Freelancer, Frontend Developer</span>
+   				<li id="job">
+   					<strong></strong>
+   					<span></span>
    				</li>
    				<li>
    					<strong>Website:</strong>
    					<span>www.kardswebsite.com</span>
    				</li>
-   				<li>
-   					<strong>Email:</strong>
-   					<span>me@kardswebsite.com</span>
+   				<li id="my_email">
+   					<strong></strong>
+   					<span></span>
    				</li>
 
    			</ul> <!-- /info-list -->
@@ -157,13 +157,13 @@
    			<p>Lorem ipsum Qui veniam ut consequat ex ullamco nulla in non ut esse in magna sint minim officia consectetur nisi commodo ea magna pariatur nisi cillum.</p>
 
 				<ul class="skill-bars">
-				   <li>
-				   	<div class="progress percent90"><span>90%</span></div>
-				   	<strong>HTML5</strong>
+				   <li id="html">
+				   	<div class="progress percent"><span></span></div>
+				   	<strong></strong>
 				   </li>
-				   <li>
-				   	<div class="progress percent85"><span>85%</span></div>
-				   	<strong>CSS3</strong>
+				   <li id="python">
+				   	<div class="progress percent"><span></span></div>
+				   	<strong></strong>
 				   </li>
 				   <li>
 				   	<div class="progress percent70"><span>70%</span></div>
@@ -200,12 +200,12 @@
 	<section id="resume" class="grey-section">
 
 		<div class="row section-intro">
-   		<div class="col-twelve">
+   		<div class="col-twelve" id="my_resume">
 
    			<h5>Resume</h5>
    			<h1>More of my credentials.</h1>
 
-   			<p class="lead">Lorem ipsum Do commodo in proident enim in dolor cupidatat adipisicing dolore officia nisi aliqua incididunt Ut veniam lorem ipsum Consectetur ut in in eu do.</p>
+   			<p class="lead"></p>
 
    		</div>   		
    	</div> <!-- /section-intro--> 
@@ -228,14 +228,14 @@
 	   					<i class="fa fa-graduation-cap"></i>
 	   				</div>
 
-	   				<div class="timeline-header">
-	   					<h3>UI Designer</h3>
-	   					<p>July 2015 - Present</p>
+	   				<div class="timeline-header" id="first_work">
+	   					<h3></h3>
+	   					<p></p>
 	   				</div>
 
-	   				<div class="timeline-content">
-	   					<h4>Awesome Studio</h4>
-	   					<p>Lorem ipsum Occaecat do esse ex et dolor culpa nisi ex in magna consectetur nisi cupidatat laboris esse eiusmod deserunt aute do quis velit esse sed Ut proident cupidatat nulla esse cillum laborum occaecat nostrud sit dolor incididunt amet est occaecat nisi.</p>
+	   				<div class="timeline-content" id="first_work_info">
+	   					<h4></h4>
+	   					<p></p>
 	   				</div>
 
 	   			</div> <!-- /timeline-block -->
@@ -300,14 +300,14 @@
 	   					<i class="fa fa-briefcase"></i>
 	   				</div>
 
-	   				<div class="timeline-header">
-	   					<h3>Master Degree</h3>
-	   					<p>July 2015 - Present</p>
+	   				<div class="timeline-header" id="education">
+	   					<h3></h3>
+	   					<p></p>
 	   				</div>
 
-	   				<div class="timeline-content">
-	   					<h4>University of Life</h4>
-	   					<p>Lorem ipsum Occaecat do esse ex et dolor culpa nisi ex in magna consectetur nisi cupidatat laboris esse eiusmod deserunt aute do quis velit esse sed Ut proident cupidatat nulla esse cillum laborum occaecat nostrud sit dolor incididunt amet est occaecat nisi.</p>
+	   				<div class="timeline-content" id="education_name">
+	   					<h4></h4>
+	   					<p></p>
 	   				</div>
 
 	   			</div> <!-- /timeline-block -->
@@ -888,23 +888,23 @@
    		<div class="col-twelve">
 
             <!-- form -->
-            <form name="contactForm" id="contactForm" method="post" action="">
+            <form name="contactForm" id="myform" method="post" action="">{% csrf_token %}
       			<fieldset>
 
                   <div class="form-field">
- 						   <input name="contactName" type="text" id="contactName" placeholder="Name" value="" minlength="2" required="">
+ 						   <input name="contactName" type="text" id="name" placeholder="Name" value="" minlength="2" required="">
                   </div>
                   <div class="form-field">
-	      			   <input name="contactEmail" type="email" id="contactEmail" placeholder="Email" value="" required="">
+	      			   <input name="contactEmail" type="email" id="email" placeholder="Email" value="" required="">
 	               </div>
                   <div class="form-field">
-	     				   <input name="contactSubject" type="text" id="contactSubject" placeholder="Subject" value="">
+	     				   <input name="contactSubject" type="text" id="subject" placeholder="Subject" value="">
 	               </div>                       
                   <div class="form-field">
-	                 	<textarea name="contactMessage" id="contactMessage" placeholder="message" rows="10" cols="50" required=""></textarea>
+	                 	<textarea name="contactMessage" id="message" placeholder="message" rows="10" cols="50" required=""></textarea>
 	               </div>                      
                  <div class="form-field">
-                     <button class="submitform">Submit</button>
+                     <button class="submitform" id="submit">Submit</button>
                      <div id="submit-loader">
                         <div class="text-loader">Sending...</div>                             
        				      <div class="s-loader">
@@ -1021,6 +1021,97 @@
    <script src="{% static 'js/jquery-2.1.3.min.js' %}"></script>
    <script src="{% static 'js/plugins.js' %}"></script>
    <script src="{% static 'js/main.js' %}"></script>
+
+   <script type="text/javascript">
+	   $(document).on('submit', '#myform', function(event){
+			event.preventDefault();
+
+			$.ajax({
+				url: "contact/api/contact-api/",
+				type: "POST",
+				data: {
+					name:$('#name').val(),
+					email:$('#email').val(),
+					subject:$('#subject').val(),
+					message:$('#message').val(),
+					csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+				},
+				success: function(data){
+					$('#myform')[0].reset();
+					alert("Your message has been sent");
+				}
+			});
+	   });
+   </script>
+
+   <script type="text/javascript">
+	   const html = document.getElementById('html');
+	   const python = document.getElementById('python');
+	   const fullname = document.getElementById('fullname');
+	   const birthday = document.getElementById('birthday');
+	   const job = document.getElementById('job');
+	   const my_email = document.getElementById('my_email');
+	   html.innerHTML = "";
+	   python.innerHTML = "";
+	   fullname.innerHTML = "";
+	   birthday.innerHTML = "";
+	   job.innerHTML = "";
+	   my_email.innerHTML = "";
+	   $.ajax({
+		   type: 'GET',
+		   url: 'portfolio/api/about-api/',
+		   success: function(data){
+				html.innerHTML = `	<div class="progress percent${ data[0]['skill'][1]['skills_procent'] }"><span>${ data[0]['skill'][1]['skills_procent'] }%</span></div>
+					<strong>${ data[0]['skill'][1]['skills'] }</strong>`;
+				python.innerHTML = `<div class="progress percent${ data[0]['skill'][0]['skills_procent'] }"><span>${ data[0]['skill'][0]['skills_procent'] }%</span></div>
+				   	<strong>${ data[0]['skill'][0]['skills'] }</strong>`;
+				fullname.innerHTML = `<strong>Fullname:</strong>
+					<span>${ data[0]['fullname'] }</span>`;
+				birthday.innerHTML = `<strong>Birth Date:</strong>
+   					<span>${ data[0]['birth_date'] }</span>`;
+				job.innerHTML = `<strong>Job:</strong>
+   					<span>${ data[0]['job'] }</span>`;
+				my_email.innerHTML = `<strong>Email:</strong>
+   					<span>${ data[0]['email'] }</span>`;
+				console.log(data[0]['skill'][0]['skills_procent']);
+		   },
+	   });
+
+   </script>
+   <script type="text/javascript">
+	   const my_resume = document.getElementById('my_resume');
+	   const first_work = document.getElementById('first_work');
+	   const first_work_info = document.getElementById('first_work_info');
+	   const education = document.getElementById('education');
+	   const education_name = document.getElementById('education_name');
+	   my_resume.innerHTML = "";
+	   first_work.innerHTML = "";
+	   first_work_info.innerHTML = "";
+	   education.innerHTML = "";
+	   education_name.innerHTML = "";
+
+	   $.ajax({
+		   type: 'GET',
+		   url: 'portfolio/api/resume-api/',
+		   success: function(data){
+			   my_resume.innerHTML = `<h5>Resume</h5>
+   			<h1>More of my credentials.</h1>
+
+   			<p class="lead">${ data[0]['aboutme_information'] }</p>`;
+			   first_work.innerHTML = `<h3>${ data[0]['work_position'] }</h3>
+	   		<p>${ data[0]['date_work'] } - Present</p>`;
+			   first_work_info.innerHTML = `<h4>${ data[0]['work_title'] }</h4>
+	   					<p>${ data[0]['work_information'] }</p>`;
+
+				education.innerHTML = `<h3>${ data[0]['education_title'] }</h3>
+	   					<p>${ data[0]['date_education'] } - Present</p>`;
+						
+				education_name.innerHTML = `<h4>${ data[0]['education_name'] }</h4>
+	   					<p>${ data[0]['education_information'] }</p>`;
+				
+		   }
+	   });
+   </script>
 
 </body>
 

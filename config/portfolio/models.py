@@ -49,9 +49,11 @@ class Projects(models.Model):
 class Resume(models.Model):
     aboutme_information = models.TextField(blank=True, null=True)
     work_title = models.CharField(max_length=111, blank=True, null=True)
+    work_position = models.CharField(max_length=100, blank=True, null=True)
     work_information = models.TextField(blank=True, null=True)
     date_work = models.DateField(blank=True, null=True)
     education_title = models.CharField(max_length=111, blank=True, null=True)
+    education_name = models.CharField(max_length=150, blank=True, null=True)
     education_information = models.TextField(blank=True, null=True)
     date_education = models.DateField(blank=True, null=True)
 

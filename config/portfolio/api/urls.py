@@ -18,7 +18,7 @@ from .views import Aboutme, Project, resume
 
 
 urlpatterns = [
-    path('about-api', Aboutme.as_view(), name='About'),
+    path('about-api/', Aboutme.as_view(), name='About'),
     path('project-api/', Project.as_view(), name='Project' ),
-    path('resume-api', resume, name='resume'),
+    path('resume-api/', resume, name='resume'),
 ]

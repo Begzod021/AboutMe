@@ -18,5 +18,5 @@ from .views import contact
 
 
 urlpatterns = [
-    path('contact-api', contact, name='About'),
+    path('contact-api/', contact, name='About'),
 ]
