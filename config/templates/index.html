@@ -6,7 +6,7 @@
    <!--- basic page needs
    ================================================== -->
    <meta charset="utf-8">
-	<title>Kards</title>
+	<title>Begzod</title>
 	<meta name="description" content="">  
 	<meta name="author" content="">
 
@@ -27,7 +27,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js"></script>
    <!-- favicons
 	================================================== -->
-	<link rel="icon" type="image/png" href="{% static 'favicon.png' %}">
+	<link rel="icon" type="image/png" href="{% static 'B.png' %}">
 
 </head>
 
@@ -42,7 +42,7 @@
    			<a class="menu-toggle" href="#"><span>Menu</span></a>
 
 	   		<div class="logo">
-		         <a href="index.html">KARDS</a>
+		         <a href="{% url 'home' %}">Begzod</a>
 		      </div>		      
 
 		   	<nav id="main-nav-wrap">
@@ -52,8 +52,7 @@
 						<li><a class="smoothscroll"  href="#resume" title="">Resume</a></li>
 						<li><a class="smoothscroll"  href="#portfolio" title="">Portfolio</a></li>
 						<li><a class="smoothscroll"  href="#services" title="">Services</a></li>					
-						<li><a class="smoothscroll"  href="#contact" title="">Contact</a></li>	
-						<li><a href="styles.html" title="">Style Demo</a></li>				
+						<li><a class="smoothscroll"  href="#contact" title="">Contact</a></li>					
 					</ul>
 				</nav>    		
    		</div> <!-- /top-bar --> 
@@ -162,9 +161,9 @@
 				   	<div class="progress percent"><span></span></div>
 				   	<strong></strong>
 				   </li>
-				   <li>
-				   	<div class="progress percent70"><span>70%</span></div>
-				   	<strong>JQuery</strong>
+				   <li id="django">
+				   	<div class="progress percent"><span></span></div>
+				   	<strong></strong>
 				   </li>
 				   <li>
 				   	<div class="progress percent95"><span>95%</span></div>
@@ -882,7 +881,7 @@
       			</fieldset>
 				<div id="success_message" style="display:none;">
 					<div class="alert-box ss-success hideit" id="close">
-				        <p>Success Message. Your Message Goes Here.</p>
+				        <p>Success Message.</p>
 					</div>
 				</div>
       		</form> <!-- Form End -->
@@ -939,7 +938,7 @@
 
    			<h5>Call Me At</h5>
 
-   			<p>Phone: (+998) 444 42 35<br>
+   			<p>Phone: (+998) 99 444 42 35<br>
 			   </p>
 
    		</div>
@@ -969,7 +968,7 @@
 
       	<div class="col-six tab-full">
 	      	<div class="copyright">
-		        	<span>© Copyright Kards 2016.</span> 
+		        	<span>© Copyright Begzod 2022</span> 
 		        	<span>Design by <a href="http://www.styleshout.com/">styleshout</a></span>	         	
 		         </div>		                  
 	      	</div>
@@ -1012,7 +1011,7 @@
 					document.getElementById('success_message').style.display='block'
 					$('#myform')[0].reset();
 					success_message.innerHTML= `<div class="alert-box ss-success hideit">
-				        <p>Success Message. Your Message Goes Here.</p>
+				        <p>Success Message.</p>
 				        <i  id='close' class="fa fa-times close"></i></div>`;
 					message_card = document.getElementById('close');
 					message_card.addEventListener('click', ()=>{
@@ -1027,6 +1026,7 @@
 	   const about_me = document.getElementById('about_me');
 	   const html = document.getElementById('html');
 	   const python = document.getElementById('python');
+	   const django = document.getElementById('django');
 	   const fullname = document.getElementById('fullname');
 	   const birthday = document.getElementById('birthday');
 	   const job = document.getElementById('job');
@@ -1038,6 +1038,7 @@
 	   job.innerHTML = "";
 	   my_email.innerHTML = "";
 	   about_me.innerHTML = "";
+	   django.innerHTML = "";
 	   $.ajax({
 		   type: 'GET',
 		   url: 'portfolio/api/about-api/',
@@ -1055,6 +1056,9 @@
    					<span>${ data[0]['job'] }</span>`;
 				my_email.innerHTML = `<strong>Email:</strong>
    					<span>${ data[0]['email'] }</span>`;
+				django.innerHTML = `<div class="progress percent${ data[0]['skill'][2]['skills_procent'] }"><span>${ data[0]['skill'][2]['skills_procent'] }%</span></div>
+					<strong>${ data[0]['skill'][2]['skills'] }</strong>`;
+				console.log(data)
 		   },
 	   });
 
