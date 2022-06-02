@@ -343,12 +343,12 @@
 	         <div id="folio-wrapper" class="block-1-2 block-mob-full stack">
 
 	         	<div class="bgrid folio-item">
-	               <div class="item-wrap">
-	               	<img src="{% static 'images/portfolio/liberty.jpg' %}" alt="Liberty">
+	               <div class="item-wrap" id="modal_1">
+	               	<img src="" alt="Liberty">
 	                  <a href="#modal-01" class="overlay">	                  	           
 	                     <div class="folio-item-table">
 	                     	<div class="folio-item-cell">
-		     					       <h3 class="folio-title">Liberty</h3>	     					    
+		     					       <h3 class="folio-title"></h3>	     					    
 		     					    	 <span class="folio-types">
 		     					       	  Graphic Design
 		     					       </span>
@@ -443,14 +443,13 @@
 	            <div id="modal-01" class="popup-modal slider mfp-hide">	
 
 				     	<div class="media">
-				     		<img src="{% static 'images/portfolio/modals/m-liberty.jpg' %}" alt="" />
+				     		<img src="" alt="" />
 				     	</div>      	
 
 					   <div class="description-box">
-					      <h4>Liberty</h4>		      
-					      <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit.</p>
-
-					      <div class="categories">Web Development</div>			               
+					      <h4></h4>		      
+					      <p></p>
+		               
 					   </div>
 
 			         <div class="link-box">
@@ -572,32 +571,6 @@
 		
 	</section> <!-- /portfolio --> 
 
-
-	<!-- CTA Section
-   ================================================== -->
-	<section id="cta" class="grey-section">
-
-   	<div class="row cta-content">
-
-   		<div class="col-twelve section-ads">  
-
-	     		<h2 class="h01"><a href="http://www.dreamhost.com/r.cgi?287326|STYLESHOUT">Styleshout Recommends Dreamhost.</a></h2>
-
-		      <p class="lead">
-		      Looking for an awesome and reliable webhosting? Try <a href="http://www.dreamhost.com/r.cgi?287326|STYLESHOUT"><span>DreamHost</span></a>.
-				Get <span>$50 off</span> when you sign up with the promocode <span>styleshout</span>. 
-				<!-- Simply type	the promocode in the box labeled “Promo Code” when placing your order. -->	
-				</p>
-
-				<div class="action">
-			      <a class="button button-primary large" href="http://www.dreamhost.com/r.cgi?287326|STYLESHOUT">Sign Up Now</a>
-		      </div>		     	
-
-   		</div>
-
-   	</div> <!-- /cta-content -->
-
-   </section> <!-- /cta --> 
 
 	
 	<!-- services Section
@@ -989,7 +962,6 @@
    <script src="{% static 'js/jquery-2.1.3.min.js' %}"></script>
    <script src="{% static 'js/plugins.js' %}"></script>
    <script src="{% static 'js/main.js' %}"></script>
-   <script src="{% static 'js/message.js' %}"></script>
 
    <script type="text/javascript">
 
@@ -1058,7 +1030,6 @@
    					<span>${ data[0]['email'] }</span>`;
 				django.innerHTML = `<div class="progress percent${ data[0]['skill'][2]['skills_procent'] }"><span>${ data[0]['skill'][2]['skills_procent'] }%</span></div>
 					<strong>${ data[0]['skill'][2]['skills'] }</strong>`;
-				console.log(data)
 		   },
 	   });
 
@@ -1120,6 +1091,28 @@
 	   					<p>${ data[0]['education_information'] }</p>`;
 			}
 		})
+   </script>
+
+   <script type="text/javascript">
+	   const modal_1 = document.getElementById('modal_1')
+	   modal_1.innerHTML = "";
+	   $.ajax({
+		   type: 'GET',
+		   url: 'portfolio/api/project-api/',
+		   success: function(data){
+				modal_1.innerHTML = `<img src="${ data[0]['image'] }" alt="IMAGE">
+	                  <a href="#modal-01" class="overlay">	                  	           
+	                     <div class="folio-item-table">
+	                     	<div class="folio-item-cell">
+		     					       <h3 class="folio-title">${ data[0]['title'] }</h3>	     					    
+		     					    	 <span class="folio-types">
+		     					       	  Graphic Design
+		     					       </span>
+		     					   </div>	                      	
+	                     </div>                    
+	                  </a>`;
+		   }
+	   })
    </script>
 
 </body>
