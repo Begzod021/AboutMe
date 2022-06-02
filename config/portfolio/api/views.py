@@ -1,4 +1,10 @@
-from portfolio.api.serializers import AboutMeSerializers, ProjectSerializers, ResumeSerializers
+from portfolio.api.serializers import (
+    AboutMeSerializers, 
+    ProjectSerializers, 
+    ResumeSerializers, 
+    EducationSerializers,
+    WorkSerializers
+    )
 from rest_framework.views import APIView
 from portfolio.models import *
 from rest_framework import status
@@ -30,4 +36,20 @@ def resume(request):
     serializers = ResumeSerializers(resum, many=True)
 
     return Response(serializers.data, status=status.HTTP_200_OK)
-        
+
+
+@api_view(['GET'])
+def get_work(request):
+    work = Work.objects.all()
+    serializers = WorkSerializers(work, many=True)
+    
+    return Response(serializers.data, status=status.HTTP_200_OK)
+
+
+@api_view(['GET'])
+def get_education(request):
+    education = Education.objects.all()
+
+    serializers = EducationSerializers(education, many=True)
+
+    return Response(serializers.data, status=status.HTTP_200_OK)

@@ -33,3 +33,14 @@ class ResumeSerializers(serializers.ModelSerializer):
     class Meta:
         model = Resume
         fields = '__all__'
+
+
+class WorkSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = Work
+        fields = '__all__'
+
+class EducationSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = Education
+        fields = '__all__'

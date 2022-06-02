@@ -112,7 +112,7 @@
 
    				<img src="{% static 'images/profile-pic.jpg' %}" alt="Profile Picture">
 
-   				<p class="lead">Lorem ipsum Exercitation culpa qui dolor consequat exercitation fugiat laborum ex ea eiusmod ad do aliqua occaecat nisi ad irure sunt id pariatur Duis laboris amet exercitation veniam labore consectetur ea id quis eiusmod.</p>
+   				<p class="lead" id="about_me"></p>
    			</div>   			
 
    		</div>   		
@@ -122,9 +122,7 @@
 
    		<div class="col-six tab-full">
 
-   			<h3>Profile</h3>
-   			<p>Lorem ipsum Qui veniam ut consequat ex ullamco nulla in non ut esse in magna sint minim officia consectetur nisi commodo ea magna pariatur nisi cillum.</p>
-
+   			<h2>Profile:</h2>
    			<ul class="info-list">
    				<li id="fullname">
    					<strong></strong>
@@ -153,8 +151,7 @@
 
    		<div class="col-six tab-full">
 
-   			<h3>Skills</h3>
-   			<p>Lorem ipsum Qui veniam ut consequat ex ullamco nulla in non ut esse in magna sint minim officia consectetur nisi commodo ea magna pariatur nisi cillum.</p>
+   			<h2>Skills:</h2>
 
 				<ul class="skill-bars">
 				   <li id="html">
@@ -188,7 +185,6 @@
    	<div class="row button-section">
    		<div class="col-twelve">
    			<a href="#contact" title="Hire Me" class="button stroke smoothscroll">Hire Me</a>
-   			<a href="#" title="Download CV" class="button button-primary">Download CV</a>
    		</div>   		
    	</div>
 
@@ -246,32 +242,14 @@
 	   					<i class="fa fa-graduation-cap"></i>
 	   				</div>
 
-	   				<div class="timeline-header">
-	   					<h3>Front-end Developer</h3>
-	   					<p>July 2014 - June 2015</p>
+	   				<div class="timeline-header" id="second_work">
+	   					<h3></h3>
+	   					<p></p>
 	   				</div>
 
-	   				<div class="timeline-content">
-	   					<h4>Super Cool Agency</h4>
-	   					<p>Lorem ipsum Occaecat do esse ex et dolor culpa nisi ex in magna consectetur nisi cupidatat laboris esse eiusmod deserunt aute do quis velit esse sed Ut proident cupidatat nulla esse cillum laborum occaecat nostrud sit dolor incididunt amet est occaecat nisi incididunt.</p>
-	   				</div>
-
-	   			</div> <!-- /timeline-block -->
-
-	   			<div class="timeline-block">
-
-	   				<div class="timeline-ico">
-	   					<i class="fa fa-graduation-cap"></i>
-	   				</div>
-
-	   				<div class="timeline-header">
-	   					<h3>Web Designer</h3>
-	   					<p>May 2013 - June 2014</p>
-	   				</div>
-
-	   				<div class="timeline-content">
-	   					<h4>Great Designs Studio</h4>
-	   					<p>Lorem ipsum Occaecat do esse ex et dolor culpa nisi ex in magna consectetur nisi cupidatat laboris esse eiusmod deserunt aute do quis velit esse sed Ut proident cupidatat nulla esse cillum laborum occaecat nostrud sit dolor incididunt amet est occaecat nisi incididunt.</p>
+	   				<div class="timeline-content" id="second_work_info">
+	   					<h4></h4>
+	   					<p></p>
 	   				</div>
 
 	   			</div> <!-- /timeline-block -->
@@ -329,31 +307,17 @@
 	   				</div>
 
 	   			</div> <!-- /timeline-block -->
-
-	   			<div class="timeline-block">
-
-	   				<div class="timeline-ico">
-	   					<i class="fa fa-briefcase"></i>
-	   				</div>
-
-	   				<div class="timeline-header">
-	   					<h3>Bachelor Degree</h3>
-	   					<p>May 2013 - June 2014</p>
-	   				</div>
-
-	   				<div class="timeline-content">
-	   					<h4>Design College</h4>
-	   					<p>Lorem ipsum Occaecat do esse ex et dolor culpa nisi ex in magna consectetur nisi cupidatat laboris esse eiusmod deserunt aute do quis velit esse sed Ut proident cupidatat nulla esse cillum laborum occaecat nostrud sit dolor incididunt amet est occaecat nisi incididunt.</p>
-	   				</div>
-
-	   			</div> <!-- /timeline-block -->
-
    			</div> <!-- /timeline-wrap -->   			
 
    		</div> <!-- /col-twelve -->
    		
    	</div> <!-- /resume-timeline -->
-		
+	   <div class="row button-section">
+		<div class="col-twelve">
+			<a href="#contact" title="Hire Me" class="button stroke smoothscroll">Hire Me</a>
+			<a href="{% url 'download' %}" title="Download CV" class="button button-primary">Download Resume</a>
+		</div>   		
+	</div>
 	</section> <!-- /features -->
 
 
@@ -916,6 +880,12 @@
                   </div>
 
       			</fieldset>
+				<div id="success_message" style="display:none;">
+					<div class="alert-box ss-success hideit">
+				        <p>Success Message. Your Message Goes Here.</p>
+				        <button id="close"></button>
+					</div>
+				</div>
       		</form> <!-- Form End -->
 
             <!-- contact-warning -->
@@ -1021,11 +991,14 @@
    <script src="{% static 'js/jquery-2.1.3.min.js' %}"></script>
    <script src="{% static 'js/plugins.js' %}"></script>
    <script src="{% static 'js/main.js' %}"></script>
+   <script src="{% static 'js/message.js' %}"></script>
 
    <script type="text/javascript">
+
 	   $(document).on('submit', '#myform', function(event){
 			event.preventDefault();
-
+			const success_message = document.getElementById('success_message');
+			success_message.innerHTML = "";
 			$.ajax({
 				url: "contact/api/contact-api/",
 				type: "POST",
@@ -1037,14 +1010,18 @@
 					csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
 				},
 				success: function(data){
+					document.getElementById('success_message').style.display='block'
 					$('#myform')[0].reset();
-					alert("Your message has been sent");
+					success_message.innerHTML= `<div class="alert-box ss-success hideit">
+				        <p>Success Message. Your Message Goes Here.</p>
+				        <i  id='close' class="fa fa-times close"></i></div>`;
 				}
 			});
 	   });
    </script>
 
    <script type="text/javascript">
+	   const about_me = document.getElementById('about_me');
 	   const html = document.getElementById('html');
 	   const python = document.getElementById('python');
 	   const fullname = document.getElementById('fullname');
@@ -1057,10 +1034,12 @@
 	   birthday.innerHTML = "";
 	   job.innerHTML = "";
 	   my_email.innerHTML = "";
+	   about_me.innerHTML = "";
 	   $.ajax({
 		   type: 'GET',
 		   url: 'portfolio/api/about-api/',
 		   success: function(data){
+				about_me.innerHTML = `${ data[0]['about_me'] }`;
 				html.innerHTML = `	<div class="progress percent${ data[0]['skill'][1]['skills_procent'] }"><span>${ data[0]['skill'][1]['skills_procent'] }%</span></div>
 					<strong>${ data[0]['skill'][1]['skills'] }</strong>`;
 				python.innerHTML = `<div class="progress percent${ data[0]['skill'][0]['skills_procent'] }"><span>${ data[0]['skill'][0]['skills_procent'] }%</span></div>
@@ -1073,23 +1052,13 @@
    					<span>${ data[0]['job'] }</span>`;
 				my_email.innerHTML = `<strong>Email:</strong>
    					<span>${ data[0]['email'] }</span>`;
-				console.log(data[0]['skill'][0]['skills_procent']);
 		   },
 	   });
 
    </script>
    <script type="text/javascript">
 	   const my_resume = document.getElementById('my_resume');
-	   const first_work = document.getElementById('first_work');
-	   const first_work_info = document.getElementById('first_work_info');
-	   const education = document.getElementById('education');
-	   const education_name = document.getElementById('education_name');
 	   my_resume.innerHTML = "";
-	   first_work.innerHTML = "";
-	   first_work_info.innerHTML = "";
-	   education.innerHTML = "";
-	   education_name.innerHTML = "";
-
 	   $.ajax({
 		   type: 'GET',
 		   url: 'portfolio/api/resume-api/',
@@ -1097,20 +1066,53 @@
 			   my_resume.innerHTML = `<h5>Resume</h5>
    			<h1>More of my credentials.</h1>
 
-   			<p class="lead">${ data[0]['aboutme_information'] }</p>`;
-			   first_work.innerHTML = `<h3>${ data[0]['work_position'] }</h3>
-	   		<p>${ data[0]['date_work'] } - Present</p>`;
-			   first_work_info.innerHTML = `<h4>${ data[0]['work_title'] }</h4>
-	   					<p>${ data[0]['work_information'] }</p>`;
-
-				education.innerHTML = `<h3>${ data[0]['education_title'] }</h3>
-	   					<p>${ data[0]['date_education'] } - Present</p>`;
-						
-				education_name.innerHTML = `<h4>${ data[0]['education_name'] }</h4>
-	   					<p>${ data[0]['education_information'] }</p>`;
-				
+   			<p class="lead">${ data[0]['aboutme_information'] }</p>`;		
 		   }
 	   });
+   </script>
+
+   <script type="text/javascript">
+	   const first_work = document.getElementById('first_work');
+	   const first_work_info = document.getElementById('first_work_info');
+	   const second_work = document.getElementById('second_work');
+	   const second_work_info = document.getElementById('second_work_info');
+	   second_work.innerHTML = "";
+	   second_work_info.innerHTML = "";
+	   first_work.innerHTML = "";
+	   first_work_info.innerHTML = "";
+	   $.ajax({
+		   type: 'GET',
+		   url: 'portfolio/api/work-api/',
+		   success: function(data){
+			   	first_work.innerHTML = `<h3>${ data[0]['work_position'] }</h3>
+	   					<p>${ data[0]['date_work'] }-present</p>`;
+				first_work_info.innerHTML = `<h4>${ data[0]['work_title'] }</h4>
+	   					<p>${ data[0]['work_information'] }</p>`;
+				second_work.innerHTML = `<h3>${ data[1]['work_position'] }</h3>
+	   					<p>${ data[0]['date_work'] }-present</p>`;
+				second_work_info.innerHTML = `<h4>${ data[1]['work_title'] }</h4>
+	   					<p>${ data[1]['work_information'] }</p>`;
+		   }
+	   })
+   </script>
+
+   <script type="text/javascript">
+	    const education = document.getElementById('education');
+	   	const education_name = document.getElementById('education_name');
+		
+		education.innerHTML = "";
+		education_name.innerHTML = "";
+
+		$.ajax({
+			type: 'GET',
+			url: 'portfolio/api/education-api/',
+			success: function(data){
+				education.innerHTML = `<h3>${ data[0]['education_title'] }</h3>
+	   					<p>${ data[0]['date_education'] }</p>`;
+				education_name.innerHTML = `<h4>${ data[0]['education_name'] }</h4>
+	   					<p>${ data[0]['education_information'] }</p>`;
+			}
+		})
    </script>
 
 </body>
