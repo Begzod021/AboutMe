@@ -27,7 +27,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js"></script>
    <!-- favicons
 	================================================== -->
-	<link rel="icon" type="image/png" href="favicon.png">
+	<link rel="icon" type="image/png" href="{% static 'favicon.png' %}">
 
 </head>
 
@@ -881,9 +881,8 @@
 
       			</fieldset>
 				<div id="success_message" style="display:none;">
-					<div class="alert-box ss-success hideit">
+					<div class="alert-box ss-success hideit" id="close">
 				        <p>Success Message. Your Message Goes Here.</p>
-				        <button id="close"></button>
 					</div>
 				</div>
       		</form> <!-- Form End -->
@@ -1015,6 +1014,10 @@
 					success_message.innerHTML= `<div class="alert-box ss-success hideit">
 				        <p>Success Message. Your Message Goes Here.</p>
 				        <i  id='close' class="fa fa-times close"></i></div>`;
+					message_card = document.getElementById('close');
+					message_card.addEventListener('click', ()=>{
+						document.getElementById('success_message').style.display='none'
+					})
 				}
 			});
 	   });
