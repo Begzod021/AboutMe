@@ -64,7 +64,7 @@ class Education(models.Model):
 
 class Resume(models.Model):
     aboutme_information = models.TextField(blank=True, null=True)
-    file_resume = models.FileField(blank=True, null=True)
+    file_resume = models.FileField(upload_to ='resume/'  ,blank=True, null=True)
 
     def __str__(self) -> str:
         return self.aboutme_information

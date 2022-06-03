@@ -31,6 +31,16 @@ class Project(APIView):
 
 
 @api_view(['GET'])
+def get_project(request, pk):
+    project = Projects.objects.get(id=pk)
+
+    serializer = ProjectSerializers(project, many=False)
+
+    return Response(serializer.data, status=status.HTTP_200_OK)
+    
+
+
+@api_view(['GET'])
 def resume(request):
     resum = Resume.objects.all()
     serializers = ResumeSerializers(resum, many=True)
