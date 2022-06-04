@@ -342,7 +342,7 @@
 	               <div class="item-wrap" id="modal_1" >
 					{% for el in projects %}
 	               	<img src="{{ el.image.url }}" alt="Liberty">
-	                  <a href="#modal-01" class="overlay">	                  	           
+	                  <a data-objid="{{el.id}}" href="#modal-01" class="overlay">	                  	           
 	                     <div class="folio-item-table">
 	                     	<div class="folio-item-cell">
 		     					       <h3 class="folio-title">{{ el.title }}</h3>	     					    
@@ -360,7 +360,7 @@
 	            <div id="modal-01" class="popup-modal slider mfp-hide">	
 
 				     	<div class="media">
-				     		<img src="{% static 'images/portfolio/shutterbug.jpg' %}" alt="" />
+				     		<img id="modal-img" src="{% static 'images/portfolio/shutterbug.jpg' %}" alt="" />
 				     	</div>      	
 
 					   <div class="description-box">
@@ -905,8 +905,7 @@
 		})
    </script>
 
-   <script>
-   </script>
+
 
 </body>
 
