@@ -4,6 +4,8 @@ from django.http import FileResponse, JsonResponse
 # Create your views here.
 
 
+
+
 def home(request):
 
     projects = Projects.objects.all()
@@ -15,6 +17,8 @@ def home(request):
     return render(request, 'index.html', context)
 
 
+
+
 def project(request):
 
     pk = request.GET.get('id')
@@ -22,6 +26,8 @@ def project(request):
     proj = Projects.objects.get(id=pk)
 
     return JsonResponse(proj)
+
+
 
 
 def download(request):

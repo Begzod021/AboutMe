@@ -2,6 +2,9 @@ from hashlib import blake2b
 from django.db import models
 from ckeditor.fields import RichTextField
 # Create your models here.
+
+
+
 class Skill(models.Model):
     skills = models.CharField(max_length=111, blank=True, null=True)
     skills_procent = models.PositiveIntegerField()
@@ -12,6 +15,8 @@ class Skill(models.Model):
     class Meta:
         verbose_name = "Skill"
         verbose_name_plural = 'Skills'
+
+
 
 class AboutMe(models.Model):
     fullname = models.CharField(max_length=250, blank=True, null=True)
@@ -31,6 +36,8 @@ class AboutMe(models.Model):
         verbose_name_plural = 'AboutMe'
 
 
+
+
 class Projects(models.Model):
     title = models.CharField(max_length=111, null=True, blank=True)
     image = models.ImageField(upload_to="projects/", blank=True, null=True)
@@ -44,6 +51,9 @@ class Projects(models.Model):
         verbose_name = 'Project'
         verbose_name_plural = 'Projects'
 
+
+
+
 class Work(models.Model):
     work_title = models.CharField(max_length=111, blank=True, null=True)
     work_position = models.CharField(max_length=100, blank=True, null=True)
@@ -53,6 +63,9 @@ class Work(models.Model):
     def __str__(self) -> str:
         return self.work_title
 
+
+
+
 class Education(models.Model):
     education_title = models.CharField(max_length=111, blank=True, null=True)
     education_name = models.CharField(max_length=150, blank=True, null=True)
@@ -61,6 +74,9 @@ class Education(models.Model):
 
     def __str__(self) -> str:
         return self.education_title
+
+
+
 
 class Resume(models.Model):
     aboutme_information = models.TextField(blank=True, null=True)

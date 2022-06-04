@@ -1,4 +1,4 @@
-from contact.models import *
+from contact.models import Contact
 from rest_framework import serializers
 
 

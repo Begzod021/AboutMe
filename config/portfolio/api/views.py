@@ -6,10 +6,19 @@ from portfolio.api.serializers import (
     WorkSerializers
     )
 from rest_framework.views import APIView
-from portfolio.models import *
+from portfolio.models import (
+    Education,
+    Projects,
+    AboutMe,
+    Resume,
+    Work,
+)
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
+
+
+
 class Aboutme(APIView):
 
     def get(self, request):
@@ -18,6 +27,7 @@ class Aboutme(APIView):
         serializer = AboutMeSerializers(about, many=True)
 
         return Response(serializer.data, status=status.HTTP_200_OK)
+
 
 
 class Project(APIView):
@@ -30,6 +40,7 @@ class Project(APIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
+
 @api_view(['GET'])
 def get_project(request, pk):
     project = Projects.objects.get(id=pk)
@@ -40,6 +51,7 @@ def get_project(request, pk):
     
 
 
+
 @api_view(['GET'])
 def resume(request):
     resum = Resume.objects.all()
@@ -48,12 +60,14 @@ def resume(request):
     return Response(serializers.data, status=status.HTTP_200_OK)
 
 
+
 @api_view(['GET'])
 def get_work(request):
     work = Work.objects.all()
     serializers = WorkSerializers(work, many=True)
     
     return Response(serializers.data, status=status.HTTP_200_OK)
+
 
 
 @api_view(['GET'])
