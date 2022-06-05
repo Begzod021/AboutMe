@@ -29,6 +29,25 @@
 	================================================== -->
 	<link rel="icon" type="image/png" href="{% static 'B.png' %}">
 
+	<script>
+		 function getToken(name) {
+		    var cookieValue = null;
+		    if (document.cookie && document.cookie !== '') {
+		        var cookies = document.cookie.split(';');
+		        for (var i = 0; i < cookies.length; i++) {
+		            var cookie = cookies[i].trim();
+		            // Does this cookie string begin with the name we want?
+		            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+		                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+		                break;
+		            }
+		        }
+		    }
+		    return cookieValue;
+		}
+		let csrftoken = getToken('csrftoken')
+	</script>
+
 </head>
 
 <body id="top">
@@ -338,11 +357,13 @@
 
    			<!-- portfolio-wrapper -->
 	         <div id="folio-wrapper" class="block-1-2 block-mob-full stack">
+				{% for el in projects %}
 	         	<div class="bgrid folio-item">
+					
 	               <div class="item-wrap" id="modal_1" >
-					{% for el in projects %}
+					
 	               	<img src="{{ el.image.url }}" alt="Liberty">
-	                  <a data-objid="{{el.id}}" href="#modal-01" class="overlay">	                  	           
+	                  <a data-id="{{el.id}}" href="#modal-01" class="overlay">	                  	           
 	                     <div class="folio-item-table">
 	                     	<div class="folio-item-cell">
 		     					       <h3 class="folio-title">{{ el.title }}</h3>	     					    
@@ -352,9 +373,11 @@
 		     					   </div>	                      	
 	                     </div>                    
 	                  </a>
-					  {% endfor %}
-	               </div>	               
+				
+	               </div>	         
+				 
 	        		</div> <!-- /folio-item -->
+					{% endfor %}      
 	            <!-- modal popups - begin
 	            ============================================================= -->
 	            <div id="modal-01" class="popup-modal slider mfp-hide">	
@@ -364,13 +387,13 @@
 				     	</div>      	
 
 					   <div class="description-box">
-					      <h4>Test</h4>		      
-					      <p>Test</p>
+					      <h4 id="modal-title">Test</h4>		      
+					      <p id="modal-text">Test</p>
 		               
 					   </div>
 
 			         <div class="link-box">
-			            <a href="http://www.behance.net">Details</a>
+			            <a href="http://www.behance.net" id="modal-detail">Details</a>
 					      <a href="#" class="popup-modal-dismiss">Close</a>
 			         </div>		      
 
@@ -905,7 +928,50 @@
 		})
    </script>
 
+   <script>
+	   let objects = document.querySelectorAll('.overlay')
+	   for (let item of objects){
+		   item.addEventListener('click', function() {
+			   get_img(item.dataset.id)
+		   })
+	   }
 
+	   function get_img(id) {
+		   var modal_img = document.querySelector('#modal-img')
+		   var modal_title = document.querySelector('#modal-title')
+		   var modal_text = document.querySelector('#modal-text')
+		   var modal_detail = document.querySelector('#modal-detail')
+		   var url = '/project'
+	   
+
+	   fetch(url, {
+
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				'X-CSRFToken': csrftoken,
+			},
+
+			body: JSON.stringify({'id': id})
+			})
+
+			.then(response => {
+				return response.json()
+			})
+
+			.then(data => {
+				modal_img.src = data['img']
+				modal_title.innerHTML = `${ data['title'] }`
+				modal_text.innerHTML = `${ data['text'] }`
+				modal_detail.href = `${ data['url'] }`
+			})
+
+
+		}
+
+   </script>
+
+   
 
 </body>
 

@@ -1,4 +1,5 @@
 from hashlib import blake2b
+from re import T
 from django.db import models
 from ckeditor.fields import RichTextField
 # Create your models here.
@@ -42,6 +43,7 @@ class Projects(models.Model):
     title = models.CharField(max_length=111, null=True, blank=True)
     image = models.ImageField(upload_to="projects/", blank=True, null=True)
     text = RichTextField()
+    url = models.URLField(blank=True, null=True)
 
     def __str__(self) -> str:
         return self.title

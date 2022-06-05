@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .models import *
 from django.http import FileResponse, JsonResponse
+import json
 # Create your views here.
 
 
@@ -20,12 +21,18 @@ def home(request):
 
 
 def project(request):
+    data = json.loads(request.body)
+    proj = Projects.objects.get(id=data['id'])
 
-    pk = request.GET.get('id')
+    
+    ctx = {
+        'title': proj.title,
+        'text': proj.text,
+        'img': proj.image.url,
+        'url':proj.url,
+    }
 
-    proj = Projects.objects.get(id=pk)
-
-    return JsonResponse(proj)
+    return JsonResponse(ctx, safe=False)
 
 
 
