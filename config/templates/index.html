@@ -184,14 +184,9 @@
 				   	<div class="progress percent"><span></span></div>
 				   	<strong></strong>
 				   </li>
-				   <li>
-				   	<div class="progress percent95"><span>95%</span></div>
-				   	<strong>PHP</strong>
-				   </li>
-				   <li>
-
-				   	<div class="progress percent75"><span>75%</span></div>
-				   	<strong>Wordpress</strong>
+				   <li id="javascript">
+				   	<div class="progress percent95"><span></span></div>
+				   	<strong></strong>
 				   </li>
       
 				</ul> <!-- /skill-bars -->		
@@ -838,6 +833,8 @@
 	   const birthday = document.getElementById('birthday');
 	   const job = document.getElementById('job');
 	   const my_email = document.getElementById('my_email');
+	   const javascript = document.getElementById('javascript');
+	   javascript.innerHTML = "";
 	   html.innerHTML = "";
 	   python.innerHTML = "";
 	   fullname.innerHTML = "";
@@ -865,6 +862,8 @@
    					<span>${ data[0]['email'] }</span>`;
 				django.innerHTML = `<div class="progress percent${ data[0]['skill'][2]['skills_procent'] }"><span>${ data[0]['skill'][2]['skills_procent'] }%</span></div>
 					<strong>${ data[0]['skill'][2]['skills'] }</strong>`;
+				javascript.innerHTML = `<div class="progress percent${ data[0]['skill'][3]['skills_procent'] }"><span>${ data[0]['skill'][3]['skills_procent'] }%</span></div>
+					<strong>${ data[0]['skill'][3]['skills'] }</strong>`
 		   },
 	   });
 
