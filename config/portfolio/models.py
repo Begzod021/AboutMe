@@ -26,6 +26,7 @@ class AboutMe(models.Model):
     email = models.EmailField(max_length=111, blank=True, null=True)
     instagram = models.URLField(blank=True, null=True)
     facebook = models.URLField(blank=True, null=True)
+    github = models.URLField(blank=True, null=True)
     skill = models.ManyToManyField(Skill, blank=True)
     about_me = RichTextField(blank=True, null=True)
     def __str__(self) -> str:

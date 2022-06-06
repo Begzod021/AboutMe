@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .models import *
 from django.http import FileResponse, JsonResponse
 import json
+from config.settings import DEBUG
 # Create your views here.
 
 
@@ -43,3 +44,6 @@ def download(request):
     response = FileResponse(open(filname, 'rb'))
 
     return response
+
+def error(request, exception):
+    return render(request, '404.html')

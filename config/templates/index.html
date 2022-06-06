@@ -106,11 +106,9 @@
    	</div> <!-- /intro-content --> 
 
    	<ul class="intro-social">        
-         <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-         <li><a href="#"><i class="fa fa-behance"></i></a></li>
-         <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-         <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-         <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+         <li id="facebook"><a href=""><i class="fa fa-facebook"></i></a></li>
+         <li id="github"><a href=""><i class="fa fa-github"></i></a></li>
+         <li id="instagram"><a href=""><i class="fa fa-instagram"></i></a></li>
       </ul> <!-- /intro-social -->      	
 
    </section> <!-- /intro -->
@@ -328,7 +326,7 @@
 	   <div class="row button-section">
 		<div class="col-twelve">
 			<a href="#contact" title="Hire Me" class="button stroke smoothscroll">Hire Me</a>
-			<a href="{% url 'download' %}" title="Download CV" class="button button-primary">Download Resume</a>
+			<a href="{% url 'download' %}" title="Download CV" class="button button-primary">Download CV</a>
 		</div>   		
 	</div>
 	</section> <!-- /features -->
@@ -834,6 +832,12 @@
 	   const job = document.getElementById('job');
 	   const my_email = document.getElementById('my_email');
 	   const javascript = document.getElementById('javascript');
+	   const facebook = document.getElementById('facebook');
+	   const instagram = document.getElementById('instagram');
+	   const github = document.getElementById('github');
+	   github.innerHTML = "";
+	   instagram.innerHTML = "";
+	   facebook.innerHTML = "";
 	   javascript.innerHTML = "";
 	   html.innerHTML = "";
 	   python.innerHTML = "";
@@ -864,6 +868,9 @@
 					<strong>${ data[0]['skill'][2]['skills'] }</strong>`;
 				javascript.innerHTML = `<div class="progress percent${ data[0]['skill'][3]['skills_procent'] }"><span>${ data[0]['skill'][3]['skills_procent'] }%</span></div>
 					<strong>${ data[0]['skill'][3]['skills'] }</strong>`
+				facebook.innerHTML = `<a href="${ data[0]['facebook'] }"><i class="fa fa-facebook"></i></a>`;
+				instagram.innerHTML = `<a href="${ data[0]['instagram'] }"><i class="fa fa-instagram"></i></a>`;
+				github.innerHTML = `<a href="${ data[0]['github'] }"><i class="fa fa-github"></i></a>`;
 		   },
 	   });
 
