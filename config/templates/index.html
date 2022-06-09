@@ -18,8 +18,8 @@
    ================================================== -->
    <link rel="stylesheet" href="{% static 'css/base.css' %}">  
    <link rel="stylesheet" href="{% static 'css/main.css' %}">
-   <link rel="stylesheet" href="{% static 'css/vendor.css' %}">     
-
+   <link rel="stylesheet" href="{% static 'css/vendor.css' %}"> 
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
    <!-- script
    ================================================== -->   
 	<script src="{% static 'js/modernizr.js' %}"></script>
@@ -27,7 +27,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js"></script>
    <!-- favicons
 	================================================== -->
-	<link rel="icon" type="image/png" href="{% static 'B.png' %}">
+	<link rel="icon" type="image/png" href="{% static 'begzod.png' %}">
 
 	<script>
 		 function getToken(name) {
@@ -109,6 +109,7 @@
          <li id="facebook"><a href=""><i class="fa fa-facebook"></i></a></li>
          <li id="github"><a href=""><i class="fa fa-github"></i></a></li>
          <li id="instagram"><a href=""><i class="fa fa-instagram"></i></a></li>
+		 <li id="telegram"><a href=""><i class="fa bi-telegram"></i></a></li>
       </ul> <!-- /intro-social -->      	
 
    </section> <!-- /intro -->
@@ -126,7 +127,7 @@
 
    			<div class="intro-info">
 
-   				<img src="{% static 'images/profile-pic.jpg' %}" alt="Profile Picture">
+   				<img src="{% static 'Untitled-2.png' %}" alt="Profile Picture">
 
    				<p class="lead" id="about_me"></p>
    			</div>   			
@@ -376,17 +377,17 @@
 	            <div id="modal-01" class="popup-modal slider mfp-hide">	
 
 				     	<div class="media">
-				     		<img id="modal-img" src="{% static 'images/portfolio/shutterbug.jpg' %}" alt="" />
+				     		<img id="modal-img" src="" alt="project" />
 				     	</div>      	
 
 					   <div class="description-box">
-					      <h4 id="modal-title">Test</h4>		      
-					      <p id="modal-text">Test</p>
+					      <h4 id="modal-title"></h4>		      
+					      <p id="modal-text"></p>
 		               
 					   </div>
 
 			         <div class="link-box">
-			            <a href="http://www.behance.net" id="modal-detail">Details</a>
+			            <a href="" id="modal-detail" target="_blank">Details</a>
 					      <a href="#" class="popup-modal-dismiss">Close</a>
 			         </div>		      
 
@@ -885,7 +886,7 @@
 			   my_resume.innerHTML = `<h5>Resume</h5>
    			<h1>More of my credentials.</h1>
 
-   			<p class="lead">${ data[0]['aboutme_information'] }</p>`;		
+   			<p class="lead">${ data[0]['aboutme_information'] }</p>`;	
 		   }
 	   });
    </script>
