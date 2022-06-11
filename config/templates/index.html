@@ -61,7 +61,7 @@
    			<a class="menu-toggle" href="#"><span>Menu</span></a>
 
 	   		<div class="logo">
-		         <a href="{% url 'home' %}">Begzod</a>
+		         <a href="{% url 'home' %}">Cards</a>
 		      </div>		      
 
 		   	<nav id="main-nav-wrap">
@@ -127,7 +127,7 @@
 
    			<div class="intro-info">
 
-   				<img src="{% static 'Untitled-2.png' %}" alt="Profile Picture">
+   				<img src="{% static 'avatar.png' %}" alt="Profile Picture">
 
    				<p class="lead" id="about_me"></p>
    			</div>   			
@@ -348,8 +348,6 @@
    	<div class="row portfolio-content">
 
    		<div class="col-twelve">
-
-   			<!-- portfolio-wrapper -->
 	         <div id="folio-wrapper" class="block-1-2 block-mob-full stack">
 				{% for el in projects %}
 	         	<div class="bgrid folio-item">
@@ -360,20 +358,17 @@
 	                  <a data-id="{{el.id}}" href="#modal-01" class="overlay">	                  	           
 	                     <div class="folio-item-table">
 	                     	<div class="folio-item-cell">
-		     					       <h3 class="folio-title">{{ el.title }}</h3>	     					    
-		     					    	 <span class="folio-types">
-		     					       	  Web Developer
-		     					       </span>
-		     					   </div>	                      	
-	                     </div>                    
-	                  </a>
-				
+		     			         	 <h3 class="folio-title">{{ el.title }}</h3>	     					    
+		     				    	 <span class="folio-types">
+		     					   	  Web Developer
+		     					    </span>
+		     					</div>	                      	
+	                    	</div>                    
+	                  	</a>
 	               </div>	         
 				 
-	        		</div> <!-- /folio-item -->
-					{% endfor %}      
-	            <!-- modal popups - begin
-	            ============================================================= -->
+	        	</div>
+				{% endfor %}
 	            <div id="modal-01" class="popup-modal slider mfp-hide">	
 
 				     	<div class="media">
@@ -934,6 +929,7 @@
 			}
 		})
    </script>
+
 
    <script>
 	   let objects = document.querySelectorAll('.overlay')
